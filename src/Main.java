@@ -1,39 +1,46 @@
+import ca.pfv.spmf.input.transaction_database_list_integers.TransactionDatabase;
+
 import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String filePath = "db.txt";
 
-        // Sử dụng hàm để đọc dữ liệu và chuyển sang CUP-Lists
-        List<CUPList<String, Integer, Double>> cupLists = CUPList.readDataAndConvertToCUPLists(filePath);
+
+        /**
+         * Khởi tạo và chạy thuật toán TUFP
+         * */
+        TUFPAlgorithm<Integer, Integer, Double> tufp = new TUFPAlgorithm<>(6);
+
+        // filePath là tên file chứa dataset
+        String filePath = "chess.txt";
+        // filePathFormat là tên file chứa dataset đã được định dạng
+        String filePathFormat = "dataset_prob.txt";
+
+//        Dataset<Integer, Double> data = new Dataset();
+
+        // Đọc dữ liệu dataset và random prob cho mỗi item
+        tufp.getDataset().loadFile(filePath);
+        // Ghi lại dữ liệu đọc từ dataset với cấu trúc khác vào file dataset_prob.txt
+        tufp.getDataset().writeDb(filePathFormat);
+
+        // Chuyển dữ liệu trong txt đã định dạng sang dạng CUP-Lists
+        tufp.readDataAndConvertToCUPLists(filePathFormat);
 
         // In cấu trúc CUP-Lists
-        System.out.println("In cấu trúc CUP-Lists");
-        for (CUPList<String, Integer, Double> cupList : cupLists) {
-            System.out.println("Name: " + cupList.getItemName());
-            System.out.println("ExpSup: " + cupList.getExpSup());
-            System.out.println("MaxProb: " + cupList.getMaxProb());
-            for (TEPList<Integer, Double> tepList : cupList.getTepList()) {
-                System.out.println("\t\t" + tepList.getTid() + ": " + tepList.getProb());
-            }
-            System.out.println("-----------------------");
-        }
+//        CUPList.printCUPLists(tufp.getCupLists());
 
-        System.out.println("Result:");
+        // Thực thi thuật toán TUFP
+        tufp.executeTUFP(tufp.getK());
 
-        // Khởi tạo và chạy thuật toán TUFP
-        TUFPAlgorithm<String, Integer, Double> tufp = new TUFPAlgorithm<>(cupLists, 6);
-        tufp.setResult(tufp.executeTUFP(tufp.getCupLists(), tufp.getK()));
-
-        // In ra bảng result kết quá cuối cùng
+        // In ra bảng kết quá Top-k cuối cùng
         tufp.printTopKUFP();
 
         // Thống kê bộ nhớ và thời gian chạy
         tufp.printStats();
 
-//        TransactionDatabase td = new TransactionDatabase();
-//        td.loadFile("chess.txt");
-//        td.printDatabase();
+//        System.out.println(tufp.getDataset().getTransactions());
+//        tufp.getDataset().printDatabase();
+//        System.out.println(tufp.getDataset().getItems());
     }
 }

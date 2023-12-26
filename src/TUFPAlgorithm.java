@@ -6,20 +6,39 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- *   TUFPAlgorithm: + List CUP-Lists        -   Type: T1
- *                  + Top k                 -   Type: T3
- *                  + Result Top-K UFP:     -   Type: T2
+ *   TUFPAlgorithm: + List CUP-Lists                            -   Type: List<CUPList<T1, T2, T3>>
+ *                  + Top k                                     -   Type: int
+ *                  + Result Top-K UFP:                         -   Type: List<CUPList<T1, T2, T3>>
+ *                  + thuộc tính dataset để chạy các hàm của lớp Dataset               -   Type: Dataset
+ *                  + Hai biến đo thời gian chạy giải thuật     -   Type: long
+ *                  + Biến đếm số lượng frequents itemsets      -   Type: int
+ *                  + Biến đếm số lượng transaction             -   Type: int
  * */
 
 public class TUFPAlgorithm<T1, T2, T3> {
-    /** start time of latest execution */
+    /** biến thời gian bắt đầu thực thi giải thuật */
     long timeStart = 0;
 
-    /**  end time of latest execution */
+    /** biến thời gian kết thúc thực thi giải thuật */
     long timeEnd = 0;
-    private List<CUPList<T1, T2, T3>> cupLists;
+
+    /** Số lượng frequents itemsets được tìm thấy */
+    private int itemsetCount = 0;
+
+    /** Số lượng transaction trong dataset */
+    private int transactionCount = 0;
+
+    /** Danh sách CUP-List có được từ dataset */
+    private List<CUPList<T1, T2, T3>> cupLists = new ArrayList<>();
+
+    /** Top k trong danh sách result */
     private int k;
-    private List<CUPList<T1, T2, T3>> result;
+
+    /** Danh sách Top-K Uncertain Frequent Pattern */
+    private List<CUPList<T1, T2, T3>> result = new ArrayList<>();
+
+    /** Dữ liệu từ dataset */
+    private Dataset<T1, T3> dataset;
 
     public List<CUPList<T1, T2, T3>> getCupLists() {
         return cupLists;
@@ -45,58 +64,101 @@ public class TUFPAlgorithm<T1, T2, T3> {
         this.result = result;
     }
 
-    public TUFPAlgorithm(List<CUPList<T1, T2, T3>> cupLists, int k) {
-        this.cupLists = cupLists;
-        this.k = k;
-        this.result = new ArrayList<CUPList<T1, T2, T3>>();
+    public Dataset<T1, T3> getDataset() {
+        return dataset;
     }
 
-    public List<List<T3>> readData(String filePath) {
-        List<CUPList<T1, T2, T3>> cupLists = new ArrayList<>();
-        List<List<T3>> probsList = new ArrayList<>();
+    public void setDataset(Dataset<T1, T3> dataset) {
+        this.dataset = dataset;
+    }
+
+    public TUFPAlgorithm(int k) {
+        this.k = k;
+        this.dataset = new Dataset<>();
+    }
+
+    /**
+     * Đọc file dataset_prob.txt đã được định dạng và chuyển thành cấu trúc dữ liệu CUP-Lists
+     * */
+
+    public void readDataAndConvertToCUPLists(String filePath) {
+        List<List<T3>> probs = new ArrayList<>();
 
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
 
             // Đọc dòng đầu tiên để lấy danh sách itemsName
-            String[] itemsList = reader.readLine().split(",");
+            String[] itemsName = reader.readLine().split(" ");
 
             // Đọc từng dòng còn lại và chuẩn hoá dữ liệu thành List
             String line;
             while ((line = reader.readLine()) != null) {
 
+                // Đếm số lượng transaction
+                transactionCount++;
+
                 // Lấy danh sách các prob trong 1 TID
-                String[] probsStr = line.split(",");
+                String[] probsStr = line.split(" ");
 
                 List<T3> probsOfTID = new ArrayList<>();
 
-                for (String item : probsStr) {
-                    probsOfTID.add((T3) item);
+                // i=1 để bỏ qua dữ liệu tid
+                for (int i = 1; i < probsStr.length; i++) {
+                    T3 item = (T3) Double.valueOf(probsStr[i]);
+                    probsOfTID.add(item);
                 }
 
                 // gộp từng danh sách các prob trong mỗi TID lại thành 1 danh sách mới
-                probsList.add(probsOfTID);
+                probs.add(probsOfTID);
                 // => [[prob_Of_TID_1]  , [prob_Of_TID_2], [prob_Of_TID_3], ...]
                 // => [[1.0,0,0.9,0.6,0,0,0,0], [0.9,0.9,0.7,0.6,0.4,0,0,0], [0,0.5,0.8,0.9,0,0.2,0.4,0], [], [],..]
+            }
+
+            // chuyển sang cấu trúc CUP-Lists
+            int i = 0;
+            // duyệt qua mỗi TID
+            while (i < probs.get(0).size()) {
+                List<TEPList<T2, T3>> tepList = new ArrayList<>();
+                Integer tid = 1;
+                Double probNum = 0.0;
+
+                // Duyệt qua từng prob của 1 item
+                for (List<T3> innerProbs : probs) {
+                    T3 prob = innerProbs.get(i);
+                    probNum = (Double) prob;
+
+                    // Bỏ các TID có prob = 0
+                    if (probNum != 0.0) {
+                        tepList.add(new TEPList<>((T2) tid, prob));
+                    }
+                    tid++;
+                }
+
+                // Tạo đối tượng CUPList và thêm vào danh sách
+                CUPList<T1, T2, T3> cupList = new CUPList<>((T1) itemsName[i], tepList);
+                cupList.setExpSup(cupList.sumExpSup(cupList));
+                cupList.setMaxProb(cupList.maxProb(cupList));
+                cupLists.add(cupList);
+                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return probsList;
     }
 
     /**
      * Thực thi toàn bộ thuật toán TUFP
      * */
-    public List<CUPList<T1, T2, T3>> executeTUFP(List<CUPList<T1, T2, T3>> cupLists, int k) {
+    public void executeTUFP(int k) {
         // reset statistics
         MemoryLogger.getInstance().reset(); // reset utility to check memory usage
 
+        // check memory usage
+        MemoryLogger.getInstance().checkMemory();
+
         // record the start time
         timeStart = System.currentTimeMillis();
-        // result chứa danh sách Top-k UFP
-        List<CUPList<T1, T2, T3>> result = new ArrayList<>();
 
         // Sắp xếp CUPList theo thứ tự giảm dần Existential Probability
         sortCUPListsByExpSup(cupLists);
@@ -112,20 +174,19 @@ public class TUFPAlgorithm<T1, T2, T3> {
             result = new ArrayList<>(cupLists);
         }
 
-        // Khởi tạo itemsets và gán result hiện tại vào itemsets để chứa các item kích thước 1
+        // Khởi tạo itemsets và gán result hiện tại vào itemsets để chứa các item kích thước 1 nằm trong top k
         // phục vụ cho việc duyệt qua các item để xử lý kết hợp CUP-List
         List<CUPList<T1, T2, T3>> itemsets = new ArrayList<>(result);
 
-        // Thực hiện chiến lược chia để trị
+        // Thực hiện chiến lược chia để trị, gọi hàm TUFP_Search
         TUFP_Search(result, itemsets, k);
 
         // record the end time
         timeEnd = System.currentTimeMillis();
-        return result;
     }
 
     /**
-     * Sắp xếp Cup-Lists theo thứ tự tăng dần ExpSup
+     * Sắp xếp Cup-Lists theo thứ tự giảm dần ExpSup
      * */
     private static <T1, T2, T3> void sortCUPListsByExpSup(List<CUPList<T1, T2, T3>> cupLists) {
         // Ghi đè lại phương thức compare trong Comparator để so sánh các đối tượng CUPList với nhau
@@ -177,6 +238,7 @@ public class TUFPAlgorithm<T1, T2, T3> {
         List<TEPList<T2, T3>> tepList2 = cupList2.getTepList();
         List<TEPList<T2, T3>> newTepLists = new ArrayList<>();
 
+        // Duyệt qua cả 2 TEP-List
         for (TEPList<T2, T3> t1 : tepList1) {
             for (TEPList<T2, T3> t2 : tepList2) {
                 if (t1.getTid() == t2.getTid()) {
@@ -193,10 +255,14 @@ public class TUFPAlgorithm<T1, T2, T3> {
                 }
             }
         }
+        // dòng comment bên dưới dùng để tạo CUP-Lists mới cho ví dụ mẫu trong bài báo có item là chữ cái
+//        String newItemsName = (String) (cupList1.getItemName()) + (String) cupList2.getItemName();
+//        CUPList<T1, T2, T3> newCupList = new CUPList<>((T1) removeDuplicates(newItemsName), newTepLists);
 
-        String newItemsName = (String) (cupList1.getItemName()) + (String) cupList2.getItemName();
+        // khởi tạo list để chứa các item CUP-List khi kết hợp
+        List<T1> newItemsName = Arrays.asList(cupList1.getItemName(), cupList2.getItemName());
 
-        CUPList<T1, T2, T3> newCupList = new CUPList<>((T1) removeDuplicates(newItemsName), newTepLists);
+        CUPList<T1, T2, T3> newCupList = new CUPList<>((T1) newItemsName, newTepLists);
         newCupList.setExpSup(newCupList.sumExpSup(newCupList));
         newCupList.setMaxProb(newCupList.maxProb(newCupList));
 
@@ -209,7 +275,7 @@ public class TUFPAlgorithm<T1, T2, T3> {
     * trong mẫu i để tạo ra mẫu (i + 1) (itemset có kích thước i+1).
     * Chiến lược này được sử dụng cho đến khi tất cả các mẫu được xem xét
      * */
-    public static <T1, T2, T3> void TUFP_Search(List<CUPList<T1, T2, T3>> result, List<CUPList<T1, T2, T3>> itemsets, int k) {
+    public  void TUFP_Search(List<CUPList<T1, T2, T3>> result, List<CUPList<T1, T2, T3>> itemsets, int k) {
         // set threshold = giá trị expSup của item cuối trong result
         double threshold = (Double) result.get(result.size() - 1).getExpSup();
 
@@ -229,6 +295,9 @@ public class TUFPAlgorithm<T1, T2, T3> {
 
                     // Kết hợp 2 CUP-Lists
                     CUPList<T1, T2, T3> cupListXY = cupListXY(currentCupList, nextCupList);
+
+                    // Tăng biến đếm itemsetCount để đếm số lượng itemset (candidates) được tạo ra
+                    itemsetCount++;
 
                     // Mở rộng mẫu newItemset
                     newItemsets.add(cupListXY);
@@ -268,14 +337,21 @@ public class TUFPAlgorithm<T1, T2, T3> {
      */
     public void printStats() {
         System.out.println("=============  TOP-K UFP SPMF v.2.10 - STATS =============");
-        System.out.println("Memory : " + MemoryLogger.getInstance().getMaxMemory() + " mb");
-        System.out.println("Total time : " + (timeEnd - timeStart) + " ms");
+        System.out.println(" Transactions count from database : " + transactionCount);
+        System.out.println(" Frequent itemsets count (candidate): " + itemsetCount);
+        System.out.println(" Memory : " + MemoryLogger.getInstance().getMaxMemory() + " mb");
+        System.out.println(" Total time : " + (timeEnd - timeStart) + " ms");
         System.out.println("===================================================");
     }
 
+    /**
+     * Print Top-k Uncertain Frequent Pattern
+     * */
     public void printTopKUFP() {
+        System.out.println("In Top-k UFP:");
         for (CUPList<T1, T2, T3> cupList : result) {
             System.out.println("\t\t\t" + cupList.getItemName() + ": " + cupList.getExpSup());
         }
+        System.out.println();
     }
 }
