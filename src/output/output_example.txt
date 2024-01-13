@@ -1,0 +1,71 @@
+"C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.5\lib\idea_rt.jar=57756:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.5\bin" -Dfile.encoding=UTF-8 -classpath D:\NAM4\layer\ChuyenDeNguyenCuu\out\production\ChuyenDeNguyenCuu algorithms.TUFP.GUI.MainTest_TUFP_Example
+Reading file example_prob.txt. . .
+In cấu trúc CUP-Lists
+Name: C
+ExpSup: 4.6
+MaxProb: 0.9
+		1: 0.9
+		2: 0.7
+		3: 0.8
+		4: 0.9
+		5: 0.9
+		7: 0.4
+-----------------------
+Name: D
+ExpSup: 3.9
+MaxProb: 0.9
+		1: 0.6
+		2: 0.6
+		3: 0.9
+		5: 0.3
+		6: 0.9
+		7: 0.6
+-----------------------
+Name: A
+ExpSup: 3.2
+MaxProb: 1.0
+		1: 1.0
+		2: 0.9
+		5: 0.4
+		7: 0.9
+-----------------------
+Name: B
+ExpSup: 2.6
+MaxProb: 0.9
+		2: 0.9
+		3: 0.5
+		5: 0.5
+		7: 0.7
+-----------------------
+Name: F
+ExpSup: 2.2
+MaxProb: 0.9
+		3: 0.2
+		4: 0.5
+		6: 0.6
+		7: 0.9
+-----------------------
+Name: H
+ExpSup: 1.4
+MaxProb: 0.8
+		4: 0.8
+		5: 0.3
+		6: 0.3
+-----------------------
+TUFP Algorithm is running...
+In Top-k UFP:
+			C: 4.6
+			D: 3.9
+			A: 3.2
+			B: 2.6
+			[C, A]: 2.25
+			F: 2.2
+
+=============  TOP-K UFP SPMF v.2.10 - STATS =============
+ Transactions count from database : 7
+ Frequent itemsets count (candidate): 13
+ Memory : 2.9220352172851562 mb
+ Total time : 10 ms
+===================================================
+
+Process finished with exit code 0

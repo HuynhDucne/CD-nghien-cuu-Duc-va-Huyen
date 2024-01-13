@@ -1,10 +1,13 @@
 package testcase.chess_dataset;
 
-import algorithms.TUFP.TUFPAlgorithm;
+import algorithms.TUFP.BLL.CUPList;
+import algorithms.TUFP.BLL.TUFPAlgorithm;
+import algorithms.TUFP.DAL.Dataset;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.List;
 
 public class MainTest_K900_Chess {
     public static void main(String[] args) throws IOException {
@@ -13,37 +16,26 @@ public class MainTest_K900_Chess {
         String filePath = fileToPath("chess.txt");
 
         // filePathFormat là tên file chứa dataset đã được định dạng có xác suất random
-        String filePathFormat = "dataset_prob.txt";
+        String filePathFormat = "seed_chess.txt";
 
         // Khởi tạo top-K
         int k = 900;
 
-        // Khởi tạo và chạy thuật toán TUFP
-        TUFPAlgorithm<Integer, Integer, Double> tufp = new TUFPAlgorithm<>(k);
+        Dataset.loadFile(filePath);
 
-        // Đọc dữ liệu dataset và random prob cho mỗi item
-        tufp.getDataset().loadFile(filePath);
-
-        // Ghi lại dữ liệu đọc từ dataset với cấu trúc khác vào file dataset_prob.txt
-        tufp.getDataset().writeDb(filePathFormat);
-
-        // Đọc dữ liệu từ dataset để tạo cấu trúc CUP-Lists
-        tufp.readDatasetToCupLists();
-
-        // In CUP-Lists
-//        CUPList.printCUPLists(tufp.getCupLists());
-
-        // In size CUP-Lists
-//        System.out.println(tufp.getCupLists().size());
+//        List<CUPList> cupLists = TUFPAlgorithm.readDatasetToCupLists(k);
 
         // Thực thi thuật toán TUFP
-        tufp.executeTUFP();
+//        List<CUPList> result = TUFPAlgorithm.executeTUFP(cupLists, k);
 
         // In ra bảng kết quả Top-k cuối cùng
-        tufp.printTopKUFP();
+//        TUFPAlgorithm.printTopKUFP(result);
 
         // Thống kê bộ nhớ và thời gian chạy
-        tufp.printStats();
+        TUFPAlgorithm.printStats();
+
+        System.out.println(Dataset.getTransactions());
+
     }
 
     /**
@@ -51,7 +43,8 @@ public class MainTest_K900_Chess {
      *
      * @param filename tên của file
      * @return trả về đường dẫn của file dưới dạng chuỗi
-     * @throws UnsupportedEncodingException
+     * @throws UnsupportedEncodingException xuất hiện khi sử dụng một hệ thống mã hóa ký tự
+     * không được hỗ trợ trong chuỗi hoặc byte của Java
      */
     public static String fileToPath(String filename) throws UnsupportedEncodingException {
         URL url = MainTest_K900_Chess.class.getResource(filename);

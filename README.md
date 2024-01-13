@@ -34,51 +34,89 @@ Clone dự án về bằng Command Prompt
 
 Để chạy ví dụ mẫu trong bài báo, thực hiện các bước sau:
 
-- Trong Command Prompt, đi tới thư mục src
+- Kiểm tra nếu chưa có thư mục `bin` thì cần tạo thư mục bin chứa file .class khi biên dịch. Nếu đã có thư mục `bin` thì bỏ qua lệnh này:
 
 ```bash
-  cd src
+  mkdir bin
 ```
 
-- Biên dịch chương trình
+- Biên dịch chương trình:
 
 ```bash
-  javac -encoding utf8 -d . .\algorithms\TUFP\Main.java 
+  javac -encoding utf8 -d bin -cp "./src" ./src/ca/pfv/spmf/tools/MemoryLogger.java ./src/algorithms/TUFP/GUI/MainTest_TUFP_Example.java  
 ```
 
-- Chạy chương trình
+- Chạy chương trình:
 
 ```bash
-  java algorithms.TUFP.Main 
+  java -cp bin algorithms.TUFP.GUI.MainTest_TUFP_Example  
 ```
-> Kết quả chạy chương trình đã có trong folder **algorithms/TUFP/Result vidumau**
+
+> Có thể xem kết quả chạy chương trình đã có sẵn trong folder `src/output/output_example.txt`.
 
 ## Chạy các bộ tests
 
-Ví dụ để chạy các bộ testcases như dataset retail, thực hiện các bước sau
+Ví dụ để chạy các bộ dataset như **_retail_**, thực hiện các 2 bước sau:
 
-- Trong Command Prompt, đi tới thư mục src
+1. Tạo một file dataset mới có xác suất ngẫu nhiên cho mỗi item trong bộ dataset cần test
 
-```bash
-  cd src
-```
-
-- Biên dịch chương trình
+- Kiểm tra nếu chưa có thư mục `bin` thì cần tạo thư mục bin chứa file .class khi biên dịch. Nếu đã có thư mục `bin` thì bỏ qua lệnh này:
 
 ```bash
-  javac -encoding utf8 -d . .\testcase\retail_dataset\MainTest_K900_Retail.java 
+  mkdir bin
 ```
 
-- Chạy chương trình
+- Biên dịch chương trình:
 
 ```bash
-  java testcase.retail_dataset.MainTest_K900_Retail 
+  javac -encoding utf8 -d bin -cp "./src" ./src/algorithms/TUFP/GUI/DatasetFileFormat.java
 ```
 
-> Sau khi chạy chương trình thành công sẽ có một file ***dataset_prob.txt*** được tạo mới trong folder **testcase**.
-> File ***dataset_prob.txt*** này chứa dataset được định dạng với các xác suất ngẫu nhiên
+- Chạy chương trình:
 
-> Kết quả chạy chương trình đã có trong folder **testcase/retail_dataset/Result Retail k=900 full transaction**
+```bash
+  java -cp bin algorithms.TUFP.GUI.DatasetFileFormat
+```
+
+> Sau khi chạy chương trình thành công, sẽ có một file retail_prob.txt có chứa xác suất ngẫu nhiên
+> cho mỗi item được tạo ra trong thư mục `src/algorithms/TUFP/dataset_prob`.
+
+> Trong folder `src/algorithms/TUFP/dataset` có chứa các bộ dataset có thể test.
+
+> Trong trường hợp muốn chạy các bộ dataset khác thì cần vào file **DatasetFileFormat.java** 
+> để điều chỉnh tên file chứa dataset (`filePath`) và tên file chứa dataset đã được định dạng 
+> có xác suất ngẫu nhiên cho mỗi item (`filePathFormat`) tương ứng.
+
+> _Trong trường hợp muốn chạy bộ dataset đã định dạng sẵn có xác suất ngẫu nhiên thì sẽ bỏ qua bước 1 này.
+> Nhưng sẽ cần chỉnh lại tên file chứa dataset đã được định dạng có xác suất (`filePathFormat`) 
+> trong hàm main của các file maintest (ví dụ: **MainTest_TUFP_Retail.java**) cho phù hợp trước khi thực hiện bước 2_.
+
+2. Chạy giải thuật cho bộ dataset mới có xác suất ngẫu nhiên cho mỗi item
+
+- Kiểm tra nếu chưa có thư mục `bin` thì cần tạo thư mục bin chứa file .class khi biên dịch. Nếu đã có thư mục `bin` thì bỏ qua lệnh này:
+
+```bash
+  mkdir bin
+```
+
+- Biên dịch chương trình:
+
+```bash
+  javac -encoding utf8 -d bin -cp "./src" ./src/ca/pfv/spmf/tools/MemoryLogger.java ./src/algorithms/TUFP/GUI/MainTest_TUFP_Retail.java 
+```
+
+- Chạy chương trình:
+
+```bash
+  java -cp bin algorithms.TUFP.GUI.MainTest_TUFP_Retail
+ 
+```
+
+> Sau khi chạy chương trình thành công sẽ có một file **retail_prob.txt** 
+> được tạo mới trong folder `src/algorithms/TUFP/dataset_prob`.
+> File **retail_prob.txt** này chứa dataset được định dạng với các xác suất ngẫu nhiên.
+
+> Kết quả chạy chương trình trên đã có sẵn trong folder `src/output/output_retail.txt`.
 
 ## Roadmap
 
