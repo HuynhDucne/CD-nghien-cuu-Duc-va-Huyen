@@ -1,8 +1,8 @@
 package algorithms.TUFP.GUI;
 
 import algorithms.TUFP.BLL.CUPList;
-import algorithms.TUFP.BLL.TUFPAlgorithm;
-import algorithms.TUFP.DAL.TUFPAlgorithmDAL;
+import algorithms.TUFP.BLL.TUFPAlgoBLL;
+import algorithms.TUFP.DAL.TUFPAlgoDAL;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,25 +13,25 @@ public class MainTest_TUFP_Example {
      */
     public static void main(String[] args) throws IOException {
 
-        // filePath là tên file chứa dataset đã được định dạng có xác suất
-        String filePath = "example_prob.txt";
+        // fileProb là tên file chứa dataset đã được định dạng có xác suất
+        String fileProb = "example_prob.txt";
 
         // Khởi tạo top-K
-        int k = 6;
+        int k = 10;
 
         // Chuyển dữ liệu trong file đã định dạng sang cấu trúc CUP-Lists
-        List<CUPList> cupLists = TUFPAlgorithmDAL.loadDatasetProb(filePath, k);
+        List<CUPList> cupLists = TUFPAlgoDAL.loadDatasetProb(fileProb, k);
 
         // In CUP-Lists
         CUPList.printCUPLists(cupLists);
 
         // Thực thi thuật toán TUFP
-        List<CUPList> result = TUFPAlgorithm.executeTUFP(cupLists, k);
+        List<CUPList> result = TUFPAlgoBLL.executeTUFP(cupLists, k);
 
         // In ra bảng kết quả Top-k cuối cùng
-        TUFPAlgorithm.printTopKUFP(result);
+        TUFPAlgoBLL.printTopKUFP(result);
 
         // Thống kê bộ nhớ và thời gian chạy
-        TUFPAlgorithm.printStats();
+        TUFPAlgoBLL.printStats();
     }
 }
