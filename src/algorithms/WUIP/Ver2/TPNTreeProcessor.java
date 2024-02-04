@@ -1,3 +1,5 @@
+package algorithms.WUIP.Ver2;
+
 import java.util.*;
 
 public class TPNTreeProcessor<T1> {

@@ -1,3 +1,5 @@
+package algorithms.WUIP.Ver2;
+
 public class Item<T1> {
     private T1 tid;
     private Double prob;
