@@ -1,0 +1,47 @@
+"C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.5\lib\idea_rt.jar=60921:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.5\bin" -Dfile.encoding=UTF-8 -classpath D:\NAM4\weighted\ChuyenDeNguyenCuu\out\production\ChuyenDeNguyenCuu algorithms.TWUFP.GUI.MainTest_TWUFP_Example
+Reading file example_weight.txt. . .
+Reading file example_prob_weighted.txt. . .
+TWUFP Algorithm is running...
+Print Top-k Weighted UFP:
+			C: 4.05
+			B: 3.728
+			D: 3.65
+			C, B: 2.737
+			E: 2.338
+			C, E: 2.15
+			B, E: 1.775
+			C, B, E: 1.63
+			B, D: 1.05
+			C, A: 1.04
+			D, F: 1.004
+			F: 0.96
+			C, B, A: 0.935
+			C, D: 0.808
+			B, A: 0.767
+			B, F: 0.69
+			C, E, A: 0.57
+			C, F: 0.558
+			C, B, E, A: 0.494
+			C, B, F: 0.492
+			E, A: 0.484
+			C, B, D: 0.459
+			B, E, A: 0.457
+			A: 0.43
+			D, E: 0.388
+			C, D, E: 0.368
+			C, E, F: 0.368
+			C, B, E, F: 0.323
+			C, F, A: 0.318
+			B, D, E: 0.307
+			B, E, F: 0.306
+			C, B, F, A: 0.298
+			E, F: 0.298
+
+=============  TOP-K WEIGHTED UFP SPMF v.2.10 - STATS =============
+ Transactions count from database : 10
+ Frequent itemsets count (candidate): 50
+ Memory : 2.9229049682617188 mb
+ Total time : 21 ms
+===================================================
+
+Process finished with exit code 0
