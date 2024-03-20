@@ -1,0 +1,110 @@
+============= PRINT TOP-K UNCERTAIN WEIGHTED FREQUENT ITEMSETS (OPTIMAL) =============
+		No: 1 - Itemset: (300) - Weight: 0.967 - CumSup: 10.393 - CumWeightSup: 10.053
+		No: 2 - Itemset: (1472) - Weight: 0.975 - CumSup: 9.832 - CumWeightSup: 9.587
+		No: 3 - Itemset: (1464) - Weight: 0.951 - CumSup: 9.516 - CumWeightSup: 9.053
+		No: 4 - Itemset: (30) - Weight: 0.943 - CumSup: 9.451 - CumWeightSup: 8.910
+		No: 5 - Itemset: (459) - Weight: 0.864 - CumSup: 10.246 - CumWeightSup: 8.857
+		No: 6 - Itemset: (1210) - Weight: 0.966 - CumSup: 9.160 - CumWeightSup: 8.851
+		No: 7 - Itemset: (1340) - Weight: 0.911 - CumSup: 9.441 - CumWeightSup: 8.604
+		No: 8 - Itemset: (600) - Weight: 0.989 - CumSup: 8.559 - CumWeightSup: 8.468
+		No: 9 - Itemset: (1373) - Weight: 0.647 - CumSup: 13.015 - CumWeightSup: 8.422
+		No: 10 - Itemset: (489) - Weight: 0.995 - CumSup: 8.394 - CumWeightSup: 8.350
+		No: 11 - Itemset: (946) - Weight: 0.866 - CumSup: 9.579 - CumWeightSup: 8.297
+		No: 12 - Itemset: (278) - Weight: 0.896 - CumSup: 9.231 - CumWeightSup: 8.270
+		No: 13 - Itemset: (1310) - Weight: 0.950 - CumSup: 8.624 - CumWeightSup: 8.191
+		No: 14 - Itemset: (774) - Weight: 0.984 - CumSup: 8.269 - CumWeightSup: 8.140
+		No: 15 - Itemset: (313) - Weight: 0.837 - CumSup: 9.671 - CumWeightSup: 8.092
+		No: 16 - Itemset: (878) - Weight: 0.863 - CumSup: 9.229 - CumWeightSup: 7.964
+		No: 17 - Itemset: (1361) - Weight: 0.990 - CumSup: 8.007 - CumWeightSup: 7.926
+		No: 18 - Itemset: (1314) - Weight: 0.962 - CumSup: 8.233 - CumWeightSup: 7.924
+		No: 19 - Itemset: (1508) - Weight: 0.867 - CumSup: 9.121 - CumWeightSup: 7.907
+		No: 20 - Itemset: (448) - Weight: 0.885 - CumSup: 8.908 - CumWeightSup: 7.885
+		No: 21 - Itemset: (767) - Weight: 0.946 - CumSup: 8.322 - CumWeightSup: 7.873
+		No: 22 - Itemset: (1497) - Weight: 0.877 - CumSup: 8.978 - CumWeightSup: 7.870
+		No: 23 - Itemset: (545) - Weight: 0.890 - CumSup: 8.830 - CumWeightSup: 7.857
+		No: 24 - Itemset: (988) - Weight: 0.834 - CumSup: 9.421 - CumWeightSup: 7.854
+		No: 25 - Itemset: (200) - Weight: 0.929 - CumSup: 8.436 - CumWeightSup: 7.838
+		No: 26 - Itemset: (378) - Weight: 0.857 - CumSup: 9.126 - CumWeightSup: 7.822
+		No: 27 - Itemset: (281) - Weight: 0.777 - CumSup: 10.072 - CumWeightSup: 7.821
+		No: 28 - Itemset: (703) - Weight: 0.917 - CumSup: 8.468 - CumWeightSup: 7.763
+		No: 29 - Itemset: (1180) - Weight: 0.945 - CumSup: 8.214 - CumWeightSup: 7.761
+		No: 30 - Itemset: (386) - Weight: 0.845 - CumSup: 9.177 - CumWeightSup: 7.755
+		No: 31 - Itemset: (1350) - Weight: 0.974 - CumSup: 7.950 - CumWeightSup: 7.742
+		No: 32 - Itemset: (1399) - Weight: 0.778 - CumSup: 9.930 - CumWeightSup: 7.725
+		No: 33 - Itemset: (919) - Weight: 0.984 - CumSup: 7.798 - CumWeightSup: 7.670
+		No: 34 - Itemset: (577) - Weight: 0.920 - CumSup: 8.332 - CumWeightSup: 7.665
+		No: 35 - Itemset: (338) - Weight: 0.711 - CumSup: 10.756 - CumWeightSup: 7.652
+		No: 36 - Itemset: (787) - Weight: 0.923 - CumSup: 8.282 - CumWeightSup: 7.645
+		No: 37 - Itemset: (718) - Weight: 0.931 - CumSup: 8.172 - CumWeightSup: 7.609
+		No: 38 - Itemset: (1282) - Weight: 0.816 - CumSup: 9.269 - CumWeightSup: 7.562
+		No: 39 - Itemset: (685) - Weight: 0.747 - CumSup: 10.035 - CumWeightSup: 7.499
+		No: 40 - Itemset: (1468) - Weight: 0.820 - CumSup: 9.095 - CumWeightSup: 7.455
+		No: 41 - Itemset: (580) - Weight: 0.846 - CumSup: 8.809 - CumWeightSup: 7.451
+		No: 42 - Itemset: (101) - Weight: 0.990 - CumSup: 7.513 - CumWeightSup: 7.434
+		No: 43 - Itemset: (888) - Weight: 0.721 - CumSup: 10.247 - CumWeightSup: 7.392
+		No: 44 - Itemset: (1222) - Weight: 0.890 - CumSup: 8.244 - CumWeightSup: 7.336
+		No: 45 - Itemset: (934) - Weight: 0.947 - CumSup: 7.723 - CumWeightSup: 7.315
+		No: 46 - Itemset: (811) - Weight: 0.906 - CumSup: 8.074 - CumWeightSup: 7.312
+		No: 47 - Itemset: (1045) - Weight: 0.721 - CumSup: 10.134 - CumWeightSup: 7.310
+		No: 48 - Itemset: (373) - Weight: 0.943 - CumSup: 7.741 - CumWeightSup: 7.299
+		No: 49 - Itemset: (352) - Weight: 0.835 - CumSup: 8.669 - CumWeightSup: 7.241
+		No: 50 - Itemset: (1082) - Weight: 0.936 - CumSup: 7.729 - CumWeightSup: 7.233
+		No: 51 - Itemset: (882) - Weight: 0.790 - CumSup: 9.144 - CumWeightSup: 7.220
+		No: 52 - Itemset: (1208) - Weight: 0.945 - CumSup: 7.633 - CumWeightSup: 7.214
+		No: 53 - Itemset: (923) - Weight: 0.888 - CumSup: 8.070 - CumWeightSup: 7.166
+		No: 54 - Itemset: (1423) - Weight: 0.882 - CumSup: 8.002 - CumWeightSup: 7.060
+		No: 55 - Itemset: (744) - Weight: 0.960 - CumSup: 7.338 - CumWeightSup: 7.042
+		No: 56 - Itemset: (1293) - Weight: 0.704 - CumSup: 9.994 - CumWeightSup: 7.031
+		No: 57 - Itemset: (832) - Weight: 0.801 - CumSup: 8.727 - CumWeightSup: 6.994
+		No: 58 - Itemset: (486) - Weight: 0.777 - CumSup: 8.996 - CumWeightSup: 6.993
+		No: 59 - Itemset: (1213) - Weight: 0.939 - CumSup: 7.450 - CumWeightSup: 6.992
+		No: 60 - Itemset: (24) - Weight: 0.719 - CumSup: 9.720 - CumWeightSup: 6.989
+		No: 61 - Itemset: (414) - Weight: 0.942 - CumSup: 7.400 - CumWeightSup: 6.970
+		No: 62 - Itemset: (431) - Weight: 0.953 - CumSup: 7.260 - CumWeightSup: 6.921
+		No: 63 - Itemset: (925) - Weight: 0.717 - CumSup: 9.646 - CumWeightSup: 6.919
+		No: 64 - Itemset: (456) - Weight: 0.899 - CumSup: 7.681 - CumWeightSup: 6.903
+		No: 65 - Itemset: (1261) - Weight: 0.945 - CumSup: 7.276 - CumWeightSup: 6.876
+		No: 66 - Itemset: (1029) - Weight: 0.804 - CumSup: 8.552 - CumWeightSup: 6.873
+		No: 67 - Itemset: (921) - Weight: 0.982 - CumSup: 6.994 - CumWeightSup: 6.871
+		No: 68 - Itemset: (1043) - Weight: 0.847 - CumSup: 8.103 - CumWeightSup: 6.865
+		No: 69 - Itemset: (1465) - Weight: 0.892 - CumSup: 7.692 - CumWeightSup: 6.861
+		No: 70 - Itemset: (125) - Weight: 0.862 - CumSup: 7.952 - CumWeightSup: 6.855
+		No: 71 - Itemset: (333) - Weight: 0.922 - CumSup: 7.437 - CumWeightSup: 6.854
+		No: 72 - Itemset: (401) - Weight: 0.876 - CumSup: 7.803 - CumWeightSup: 6.836
+		No: 73 - Itemset: (1007) - Weight: 0.642 - CumSup: 10.616 - CumWeightSup: 6.819
+		No: 74 - Itemset: (73) - Weight: 0.957 - CumSup: 7.122 - CumWeightSup: 6.813
+		No: 75 - Itemset: (1473) - Weight: 0.880 - CumSup: 7.708 - CumWeightSup: 6.781
+		No: 76 - Itemset: (358) - Weight: 0.907 - CumSup: 7.465 - CumWeightSup: 6.769
+		No: 77 - Itemset: (179) - Weight: 0.700 - CumSup: 9.634 - CumWeightSup: 6.742
+		No: 78 - Itemset: (1321) - Weight: 0.996 - CumSup: 6.759 - CumWeightSup: 6.734
+		No: 79 - Itemset: (447) - Weight: 0.667 - CumSup: 10.069 - CumWeightSup: 6.720
+		No: 80 - Itemset: (876) - Weight: 0.982 - CumSup: 6.840 - CumWeightSup: 6.716
+		No: 81 - Itemset: (1296) - Weight: 0.876 - CumSup: 7.588 - CumWeightSup: 6.650
+		No: 82 - Itemset: (436) - Weight: 0.771 - CumSup: 8.578 - CumWeightSup: 6.617
+		No: 83 - Itemset: (1136) - Weight: 0.945 - CumSup: 6.979 - CumWeightSup: 6.596
+		No: 84 - Itemset: (1407) - Weight: 0.747 - CumSup: 8.832 - CumWeightSup: 6.593
+		No: 85 - Itemset: (406) - Weight: 0.737 - CumSup: 8.943 - CumWeightSup: 6.587
+		No: 86 - Itemset: (958) - Weight: 0.950 - CumSup: 6.899 - CumWeightSup: 6.558
+		No: 87 - Itemset: (983) - Weight: 0.996 - CumSup: 6.560 - CumWeightSup: 6.534
+		No: 88 - Itemset: (493) - Weight: 0.708 - CumSup: 9.225 - CumWeightSup: 6.533
+		No: 89 - Itemset: (534) - Weight: 0.970 - CumSup: 6.725 - CumWeightSup: 6.522
+		No: 90 - Itemset: (1074) - Weight: 0.904 - CumSup: 7.208 - CumWeightSup: 6.516
+		No: 91 - Itemset: (1073) - Weight: 0.809 - CumSup: 8.018 - CumWeightSup: 6.489
+		No: 92 - Itemset: (12) - Weight: 0.940 - CumSup: 6.888 - CumWeightSup: 6.474
+		No: 93 - Itemset: (357) - Weight: 0.890 - CumSup: 7.272 - CumWeightSup: 6.473
+		No: 94 - Itemset: (395) - Weight: 0.884 - CumSup: 7.313 - CumWeightSup: 6.468
+		No: 95 - Itemset: (94) - Weight: 0.719 - CumSup: 8.982 - CumWeightSup: 6.460
+		No: 96 - Itemset: (1026) - Weight: 0.911 - CumSup: 7.073 - CumWeightSup: 6.446
+		No: 97 - Itemset: (526) - Weight: 0.695 - CumSup: 9.251 - CumWeightSup: 6.428
+		No: 98 - Itemset: (48) - Weight: 0.922 - CumSup: 6.953 - CumWeightSup: 6.408
+		No: 99 - Itemset: (914) - Weight: 0.939 - CumSup: 6.780 - CumWeightSup: 6.363
+		No: 100 - Itemset: (1451) - Weight: 0.939 - CumSup: 6.777 - CumWeightSup: 6.362
+
+============= TOP-K UNCERTAIN WEIGHTED FREQUENT ITEMSETS (OPTIMAL) - STATS =============
+ Top K = 100
+ Items count from dataset: 1559
+ Transactions count from dataset : 4141
+ Number of candidates generated: 0
+ Maximum memory usage : 176.31694793701172 mb
+ Total time ~ 927 ms
+===================================================
