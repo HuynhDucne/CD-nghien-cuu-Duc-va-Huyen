@@ -1,0 +1,15 @@
+============= PRINT TOP-K UNCERTAIN WEIGHTED FREQUENT ITEMSETS (OPTIMAL) =============
+		No: 1 - Itemset: (1) - Weight: 1.000 - CumSup: 4.800 - CumWeightSup: 4.800
+		No: 2 - Itemset: (3) - Weight: 0.800 - CumSup: 4.900 - CumWeightSup: 3.920
+		No: 3 - Itemset: (2) - Weight: 0.600 - CumSup: 6.300 - CumWeightSup: 3.780
+		No: 4 - Itemset: (5) - Weight: 0.700 - CumSup: 5.400 - CumWeightSup: 3.780
+		No: 5 - Itemset: (9) - Weight: 0.600 - CumSup: 5.600 - CumWeightSup: 3.360
+
+============= TOP-K UNCERTAIN WEIGHTED FREQUENT ITEMSETS (OPTIMAL) - STATS =============
+ Top K = 5
+ Items count from dataset: 10
+ Transactions count from dataset : 10
+ Number of candidates generated: 0
+ Maximum memory usage : 3.2004318237304688 mb
+ Total time ~ 65 ms
+===================================================
